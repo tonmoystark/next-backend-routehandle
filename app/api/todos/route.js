@@ -1,5 +1,5 @@
 export async function GET(request) {
-  const url = new request.url();
+  const url = new URL(request.url);
   const { searchParams } = url;
 
   const apiUrl = new URL("https://jsonplaceholder.typicode.com/todos");
