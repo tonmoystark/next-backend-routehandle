@@ -20,7 +20,7 @@ import { headers } from "next/headers";
 //learning headers
 
 // export async function GET(request) {
-//   // approach 1 -- getting and setting data in headers
+//   // approach 1 -- getting and setting data in headers method
 //   const reqHeaders = new Headers(request.headers);
 
 //   reqHeaders.set("username", "Tonmoy");
@@ -33,13 +33,23 @@ import { headers } from "next/headers";
 // }
 
 export async function GET(request) {
+  // using headers provided by next js
   const reqHeaders = await headers();
 
   console.log(reqHeaders.get("Authorization"));
   console.log(reqHeaders.get("user-agent"));
-  return new Response("<h1>hello</h1>", {
-    headers: {
-      "Content-Type": "text/html",
+  // return new Response("<h1>hello</h1>", {
+  //   headers: {
+  //     "Content-Type": "text/html",
+  //   },
+  // });
+
+  return Response.json(
+    { message: "HEllo Tonmoy" },
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
     },
-  });
+  );
 }
