@@ -1,4 +1,4 @@
-import { headers } from "next/headers";
+import { headers, cookies } from "next/headers";
 // export async function GET(request) {
 //   const url = new URL(request.url);
 
@@ -32,24 +32,55 @@ import { headers } from "next/headers";
 //   return new Response("hello world");
 // }
 
+// export async function GET(request) {
+//   // using headers provided by next js
+//   const reqHeaders = await headers();
+
+//   console.log(reqHeaders.get("Authorization"));
+//   console.log(reqHeaders.get("user-agent"));
+//   // return new Response("<h1>hello</h1>", {
+//   //   headers: {
+//   //     "Content-Type": "text/html",
+//   //   },
+//   // });
+
+//   return Response.json(
+//     { message: "HEllo Tonmoy" },
+//     {
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//     },
+//   );
+// }
+
+// lets understand cookies
+
+// export async function GET(request) {
+//   // using cookie approach one
+//   const reqHeaders = await headers();
+
+//   console.log(reqHeaders.get("Authorization"));
+
+//   return new Response("<h1>HEllo world</h1>", {
+//     headers: {
+//       "content-type": "html/text",
+//       "set-cookie": "name=Tonmoy",
+//     },
+//   });
+// }
+
 export async function GET(request) {
-  // using headers provided by next js
   const reqHeaders = await headers();
+  const reqCookie = await cookies();
 
-  console.log(reqHeaders.get("Authorization"));
+  reqCookie.set("testKey", "testValue");
   console.log(reqHeaders.get("user-agent"));
-  // return new Response("<h1>hello</h1>", {
-  //   headers: {
-  //     "Content-Type": "text/html",
-  //   },
-  // });
 
-  return Response.json(
-    { message: "HEllo Tonmoy" },
-    {
-      headers: {
-        "Content-Type": "application/json",
-      },
+  return Response.json({
+    message: "testing",
+    headers: {
+      "content-type": "json/application",
     },
-  );
+  });
 }
